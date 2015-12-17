@@ -31,7 +31,6 @@ thought:
 markdown: kramdown
 highlighter : pygments
 permalink   : /:title/
-source:      source
 destination: _site
 
 paginate: 10
