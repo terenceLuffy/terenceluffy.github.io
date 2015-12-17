@@ -13,6 +13,9 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: ""
 github_username:  terenceluffy
 rss_path: source/
+url: http://terenceluffy.github.io
+production_url: http://terenceluffy.github.io
+repo: https://github.com/terenceLuffy
 author:
   name      : Terence Chen
   email: terenceluffy@gmail.com
