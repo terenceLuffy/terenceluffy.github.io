@@ -1,0 +1,16 @@
+---
+layout: default
+title: Home
+post_class: page-template
+slug: home
+---
+
+<article>
+  <h2>welcome to my blog!</h2>
+</article>
+
+{% for post in paginator.posts %}
+  {% include article.html %}
+{% endfor %}
+
+{% include pagination.html %}
