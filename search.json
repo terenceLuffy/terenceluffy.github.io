@@ -2,58 +2,18 @@
   
     {
       "title"    : "My first post!",
-      "category" : "my posts",
-      "tags"     : "first post",
+      "category" : "article",
+      "tags"     : "article",
       "url"      : "/My-first-post/",
       "date"     : "2015-12-17 12:47:54 -0500"
     } ,
   
     {
       "title"    : "Welcome to Jekyll!",
-      "category" : "jekyll and update",
+      "category" : "article",
       "tags"     : "",
       "url"      : "/welcome-to-jekyll/",
       "date"     : "2015-12-17 12:11:54 -0500"
-    } ,
-  
-    {
-      "title"    : "The quick, brown fox jumps over a lazy dog",
-      "category" : "welcome",
-      "tags"     : "welcome",
-      "url"      : "/the-quick-brown-fox-jumps-over-a-lazy-dog/",
-      "date"     : "2015-11-12 11:42:24 -0500"
-    } ,
-  
-    {
-      "title"    : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",
-      "category" : "welcome",
-      "tags"     : "welcome",
-      "url"      : "/lorem-ipsum-dolor-sit-amet-consectetuer-adipiscing-elit/",
-      "date"     : "2015-11-12 11:41:50 -0500"
-    } ,
-  
-    {
-      "title"    : "A wonderful serenity has taken possession of my entire soul",
-      "category" : "welcome",
-      "tags"     : "welcome",
-      "url"      : "/a-wonderful-serenity-has-taken-possession-of-my-entire-soul/",
-      "date"     : "2015-11-12 11:39:18 -0500"
-    } ,
-  
-    {
-      "title"    : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia",
-      "category" : "welcome",
-      "tags"     : "welcome",
-      "url"      : "/far-far-away-behind-the-word-mountains-far-from-the-countries-vokalia-and-consonantia/",
-      "date"     : "2015-11-12 11:38:20 -0500"
-    } ,
-  
-    {
-      "title"    : "Welcome to Jekyll!",
-      "category" : "welcome",
-      "tags"     : "welcome and hello-world",
-      "url"      : "/welcome-to-jekyll/",
-      "date"     : "2015-11-12 11:08:24 -0500"
     } 
   
 ]
