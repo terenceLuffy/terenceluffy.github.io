@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br">
+  <head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="alternate" href="http://terenceluffy.github.io" hreflang="pt-BR">
+<link href="http://gmpg.org/xfn/11" rel="profile">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="theme-color" content="#005344">
+<title> How to use ASHorizontalScrollView | Terence Chen</title>
+<meta name="google-site-verification" content="zS1dSn20XtA4FJYEOQLXqI0boxZdMnJ2g3beje-cl20">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<!-- Social: Facebook / Open Graph -->
+<meta property="og:url" content="http://terenceluffy.github.io/how-to-use-ASHorizontalScrollView/">
+<meta property="og:title" content=" How to use ASHorizontalScrollView | Terence Chen">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Terence Chen">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:author" content="https://www.facebook.com/weiwei.chen.1272010">
+<meta property="og:image" content="http://terenceluffy.github.io">
+<!-- Social: Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nandomoreirame">
+<meta name="twitter:domain" content="http://terenceluffy.github.io">
+<meta name="twitter:title" content=" How to use ASHorizontalScrollView | Terence Chen">
+<meta name="twitter:description" content="">
+<meta name="twitter:image:src" content="http://terenceluffy.github.io">
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="114x114" href="http://terenceluffy.github.io/assets/ico/apple-touch-icon-114-516f4e19976b9e4dbb77ad9b576831fe.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://terenceluffy.github.io/assets/ico/apple-touch-icon-72-5409b2df229305703caf583d86c845ab.png">
+<link rel="apple-touch-icon" href="http://terenceluffy.github.io/assets/ico/apple-touch-icon-57-aa873e019cf659e0d4e6a0b5bb9f379d.png">
+<link rel="shortcut icon" href="http://terenceluffy.github.io/assets/ico/favicon-b5ecc36e2f9d7bd353ee91851eb81a94.png">
+<!-- rel prev and next -->
+<!-- Canonical link tag -->
+<link rel="canonical" href="http://terenceluffy.github.io/how-to-use-ASHorizontalScrollView/">
+<link rel="alternate" type="application/rss+xml" title="Terence Chen" href="http://terenceluffy.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/main-d6a1cab143e12c36753f37d154bc8713.css">
+<script src="/assets/modernizr-custom-cb807611a3e262b2eac59444cbab74d6.js" data-cfasync="false"></script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Website",
+  "publisher": "terence.chen",
+  "url": "http://terence.chen/",
+  "description": "This is my personal blog for studying."
+}
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'terencechen',
+      baseurl          = '';
+</script>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', '']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+  </head>
+  <body class="post-template single">
+    <header class="header">
+  <div class="container">
+    <nav class="navbar">
+      <ul>
+        <li><a href="/"><b>Home</b></a></li>
+        <li><a href="#!" data-modal="modalSearch"><i class="fa fa-search"></i></a></li>
+        <li><a href="/feed.xml" target="_blank"><i class="fa fa-feed"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <main class="wrapper container" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
+      <article class="post" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+  <header class="post-header">
+    <h1>How to use ASHorizontalScrollView</h1>
+    <div class="post-meta">
+        <i class="fa fa-calendar-o"></i> <time datetime="2016-01-04"> 2016-01-04
+      </time>
+      <span>
+        <i class="fa fa-comments"></i> <a href="/how-to-use-ASHorizontalScrollView/#disqus_thread" data-disqus-identifier="/how-to-use-ASHorizontalScrollView">Leave a comment</a>
+      </span>
+      <span>
+        <i class="fa fa-folder-open-o"></i> <a href="/category/ios/">iOS</a>
+      </span>
+    </div>
+  </header>
+  <p>In this article, you can find the source of the example about how to use ASHorizontalScrollView.
+You can find the source used in here:</p>
+<ul>
+  <li><a href="https://github.com/terenceLuffy/AppStoreStyleHorizontalScrollView/tree/master/sampleScorllViewInSwift">Example in Swift</a></li>
+  <li><a href="https://github.com/terenceLuffy/AppStoreStyleHorizontalScrollView/tree/master/ScrollViewSample">Example in Objective-C</a></li>
+</ul>
+<p>And the source of this control:</p>
+<ul>
+  <li><a href="https://github.com/terenceLuffy/AppStoreStyleHorizontalScrollView/tree/master/Sources">Source in Swift </a></li>
+  <li><a href="https://github.com/terenceLuffy/AppStoreStyleHorizontalScrollView/tree/master/Sources/ASHorizontalScrollView">Source in Objective-C</a></li>
+</ul>
+<h3 id="what-is-ashorizontalscrollview">What is ASHorizontalScrollView?</h3>
+<p>It is a horizontal scroll view that behaves as the apps scroll view in App Store.
+<img src="https://dl.dropboxusercontent.com/u/91675323/ASHorizontalScrollView/appstore.PNG" alt="" /></p>
+<p>It has several key features:</p>
+<ol>
+  <li>It scrolls automatically to the nearest subview with certain (left and right) margin</li>
+  <li>It would show certain portion of the last subview in the right (or left if the last one is the right-most subview)</li>
+  <li>The subview can be a button, an image or any <code>UIView</code></li>
+</ol>
+<h3 id="the-idea-of-this-control">The idea of this control</h3>
+<p>To look at the app store scroll view, we can find out some keys:</p>
+<ul>
+  <li>All the subviews has same left or right margin</li>
+  <li>The size of subview is all the same</li>
+  <li>There is a portion of left or right subview showed to indicate that there are more items in the left or right</li>
+</ul>
+<p>To simplify the use of this control, it should automatically calculate the number of items to fit in the current width of scrollview. Therefore, we would need some constants to do that:</p>
+<ul>
+  <li>The minimum width of subview showed in the left or right edge</li>
+  <li>The uniformed size for all subviews</li>
+  <li>The margin between subviews</li>
+</ul>
+<h3 id="tricks-behind-it">Tricks behind it</h3>
+<h5 id="how-to-get-the-margin-between-subviews">How to get the margin between subviews?</h5>
+<p>Here is the layout:</p>
+<font size="2"> |-leftMargin-subview1-marginInBetween- ... -subviewN-marginInBetween-a part of last subviewN+1-| </font>
+<p><br />
+so the constitution of the scrollview is</p>
+<blockquote>
+  <p>scrollview.width = leftMargin + (subview.width+marginInBetween) * N + width of a part of last subviewN+1</p>
+</blockquote>
+<p>In order to get the uncertain number ‘N’, we would need to know ‘leftMargin’, ‘marginInBetween’, ‘appeared width of N+1 subview’ ‘subview width’, ‘scrollview width’, so that</p>
+<blockquote>
+  <p>N = floorf((scrollview.width - leftMargin - appeared width of N+1 subview)/(subview.width + marginInBetween))</p>
+</blockquote>
+<p>This ‘N’ is the maximum number of subviews that can be showed in the current width of scrollview. However, the value of ‘N’ is not necessary an integer, which means we should adjust the marginInBetween to fix it. Here is how to calculate the actual margin by using the number ‘N’:</p>
+<blockquote>
+  <p>actualMarginInBetween = (scrollview.width - leftMargin - appeared width of N+1 subview)/N - subview.width</p>
+</blockquote>
+<p>Finally, we get all the values confirmed, and they will be used to construct the subviews.
+<br /><br /></p>
+<h5 id="how-to-automatically-scroll-to-subview">How to automatically scroll to subview?</h5>
+<p>Apple provide a very convenient way to get it done. In the delegate methods of UIScrollView, there is a <code>scrollViewWillEndDragging</code> method which will be called whenever the scrolling action is going to finish. In another word, it is triggered when your finger leave the screen after scrolling. In the method parameters, it gives us a very useful value <code>targetContentOffset</code>. It shows us the final destination of the scrolling end point.
+<br /><br /></p>
+<p>After getting the destination, the next step is to get the closest subview by the destination. First, we need to find out the index of the left item by:</p>
+<blockquote>
+  <p>index = (offset.x - leftMargin)/(marginInBetween+subview.width) as integer</p>
+</blockquote>
+<p>Because the margin is set properly before this calculation, so this index should be the correct integer that equal to the index. Then we need to see how much portion does the left-most subview will show. For example, the end point might be in the middle of the left subview, and in such case, we have to determine if we want to scroll to the next subview or scroll back to the beginning of current subview.</p>
+<blockquote>
+  <p>leftItem = items[index] <br /> if offset.x - leftItem.x &gt; leftItem.width/2 then <br /> scroll to next subview <br /> else <br /> scroll back to beginning of leftItem</p>
+</blockquote>
+<p>In addition, you should also check if the scroll view scroll out of its content size. Which means you scroll more than you should.</p>
+<blockquote>
+  <p>if leftItem.x + scrollView.width &gt; scrollView.contentSize.width then <br /> scroll back to last subview</p>
+</blockquote>
+<h3 id="basic-usage">Basic Usage</h3>
+<p>This control hides most of complexity inside the control source, all you need is to setup several variable and then add all your subviews. And you are free!!!</p>
+<h5 id="constants">Constants</h5>
+<p>They are not the actual Constant but can be set anytime you want, and do remember to refresh the view to make it happens</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">/// the uniform size of all added items, please set it before adding any items,</span>
+<span class="c1">/// otherwise, default size will be applied</span>
+<span class="n">uniformItemSize</span> <span class="k">default</span> <span class="n">square</span> <span class="n">with</span> <span class="mi">80</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">scrollview</span> <span class="n">height</span>
+<span class="c1">/// the margin between left border and first item,</span>
+<span class="n">leftMarginPx</span> <span class="k">default</span> <span class="mf">5.0</span>
+<span class="c1">/// the mini margin between items, it is the seed to calculate the actual margin</span>
+<span class="c1">/// which is not less than</span>
+<span class="n">miniMarginPxBetweenItems</span> <span class="k">default</span> <span class="mf">10.0</span>
+<span class="c1">/// the minimum width appear for last item of current screen,</span>
+<span class="c1">/// set it 0 if you don&#39;t want any part of the last item appear on the right</span>
+<span class="n">miniAppearPxOfLastItem</span> <span class="k">default</span> <span class="mf">20.0</span></code></pre></div>
+<p>After setting these constants used for calculation, all you need is to add your subviews by using either <code>addItem</code> or <code>addItems</code>.</p>
+<p>Full codes here:</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="n">horizontalScrollView</span> <span class="o">=</span> <span class="n">ASHorizontalScrollView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
+<span class="c1">//The default values will be used if you don&#39;t set it</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">leftMarginPx</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">miniMarginPxBetweenItems</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">miniAppearPxOfLastItem</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">uniformItemSize</span> <span class="o">=</span> <span class="n">CGSizeMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="c1">//This must be called after changing any size or margin property of this class to get acurrate margin</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">setItemsMarginOnce</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mf">1.</span><span class="p">.</span><span class="mf">.20</span><span class="p">{</span>
+    <span class="k">let</span> <span class="n">button</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectZero</span><span class="p">)</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">blueColor</span><span class="p">()</span>
+    <span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">horizontalScrollView</span><span class="p">)</span>
+<span class="c1">//refresh it if needed</span></code></pre></div>
+<h3 id="advanced-usage">Advanced Usage</h3>
+<p>Once you get used to it, you can customize it fully by your own. For example, instead of inserting a button, you can insert a view containing an image and a text just like the app store did. Or you can make the button with corner radius through its layer, etc.
+<br /><br />
+In addition, you can change the setting of this control. Such as the deceleration rate of the scrollview by <code>self.decelerationRate = UIScrollViewDecelerationRateNormal or UIScrollViewDecelerationRateFast(default)</code>. This control is fully customizable in MIT license, feel free to use it in anyway you like :)</p>
+<h3 id="summary">Summary</h3>
+<p>This is a simple control built with UIScrollView and its delegate methods. There isn’t much complicated parts except a little bit of math. And I think this is all you need to know about using this control. If you have any question, feel free to leave a comment or email it to me.</p>
+  <footer class="post-footer">
+    <section class="author">
+      <h4>Terence Chen</h4>
+      <p></p>
+    </section>
+<aside class="share">
+  <h4>Share this.</h4>
+  <a href="http://twitter.com/share?text=How to use ASHorizontalScrollView&amp;url=http://terenceluffy.github.io/how-to-use-ASHorizontalScrollView/&amp;hashtags=web,dev,blog,soudev&amp;via=nandomoreirame"
+  onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://terenceluffy.github.io/how-to-use-ASHorizontalScrollView/"
+  onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+    <i class="fa fa-facebook-square"></i>
+  </a>
+</aside>
+      <hr>
+<aside id="comments" class="disqus">
+  <h3 class="txt-center"><i class="fa fa-comments"></i> Comments</h3>
+  <hr>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = '/how-to-use-ASHorizontalScrollView';
+    var disqus_title = 'How to use ASHorizontalScrollView';
+    var disqus_url = 'http://terenceluffy.github.io/how-to-use-ASHorizontalScrollView/';
+    /*var disqus_developer = 1;*/
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+  </noscript>
+</aside>
+  </footer>
+</article>
+    </main>
+<footer class="footer">
+  <div class="container">
+    <ul class="icons">
+      <li>
+        <a href="mailto:terenceluffy@gmail.com" class="icon-facebook" target="_blank">
+          <i class="fa fa-envelope"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/terenceLuffy" class="icon-github" target="_blank">
+          <i class="fa fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/weiwei.chen.1272010" class="icon-facebook" target="_blank">
+          <i class="fa fa-facebook"></i>
+        </a>
+      </li>
+      <!--
+      <li>
+        <a href="" class="icon-twitter" target="_blank">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a href="" class="icon-instagram" target="_blank">
+          <i class="fa fa-instagram"></i>
+        </a>
+      </li>
+    -->
+      <li>
+        <a href="https://ca.linkedin.com/in/terence-chen-13955248" class="icon-linkedin" target="_blank">
+          <i class="fa fa-linkedin"></i>
+        </a>
+      </li>
+    </ul>
+    <small class="clearfix">
+      <a href="/about">About</a>
+    </small>
+    <p>
+      <q>I gonna become King Of the Pirates!</q>
+      <small>– Monkey • D • Luffy</small>
+    </p>
+    <small class="clearfix">
+      Made with <a href="http://jekyllrb.com" target="_blank">Jekyll</a>
+    </small>
+  </div>
+</footer>
+<a class="scroll-up fa fa-chevron-up bounce" href="#" data-position="0"></a>
+<div id="modalSearch" class="modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__content">
+    <a href="#!" class="modal-close" data-modal-close>&times;</a>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search in 3 articles">
+      <ul id="results-container"></ul>
+    </div>
+  </div>
+</div>
+    <script src="/assets/main-52d417e8a6ff9f5b168386d37c96338a.js"></script>
+  </body>
+</html>
