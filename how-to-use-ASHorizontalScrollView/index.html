@@ -142,13 +142,13 @@ so the constitution of the scrollview is</p>
 <blockquote>
   <p>scrollview.width = leftMargin + (subview.width+marginInBetween) * N + width of a part of last subviewN+1</p>
 </blockquote>
-<p>In order to get the uncertain number ‘N’, we would need to know ‘leftMargin’, ‘marginInBetween’, ‘appeared width of N+1 subview’ ‘subview width’, ‘scrollview width’, so that</p>
+<p>In order to get the uncertain number ‘N’, we would need to know ‘leftMargin’, ‘marginInBetween’, ‘visible width of N+1 subview’ ‘subview width’, ‘scrollview width’, so that</p>
 <blockquote>
-  <p>N = floorf((scrollview.width - leftMargin - appeared width of N+1 subview)/(subview.width + marginInBetween))</p>
+  <p>N = floorf((scrollview.width - leftMargin - visible width of N+1 subview)/(subview.width + marginInBetween))</p>
 </blockquote>
 <p>This ‘N’ is the maximum number of subviews that can be showed in the current width of scrollview. However, the value of ‘N’ is not necessary an integer, which means we should adjust the marginInBetween to fix it. Here is how to calculate the actual margin by using the number ‘N’:</p>
 <blockquote>
-  <p>actualMarginInBetween = (scrollview.width - leftMargin - appeared width of N+1 subview)/N - subview.width</p>
+  <p>actualMarginInBetween = (scrollview.width - leftMargin - visible width of N+1 subview)/N - subview.width</p>
 </blockquote>
 <p>Finally, we get all the values confirmed, and they will be used to construct the subviews.
 <br /><br /></p>
@@ -159,24 +159,21 @@ so the constitution of the scrollview is</p>
 <blockquote>
   <p>index = (offset.x - leftMargin)/(marginInBetween+subview.width) as integer</p>
 </blockquote>
-<p>Because the margin is set properly before this calculation, so this index should be the correct integer that equal to the index. Then we need to see how much portion does the left-most subview will show. For example, the end point might be in the middle of the left subview, and in such case, we have to determine if we want to scroll to the next subview or scroll back to the beginning of current subview.</p>
+<p>Because the margin is set properly before this calculation, so this index should be the correct integer that equal to the index. Then we need to see how much portion does the left-most subview will show. For example, the end point might be in the middle of the left most subview, and in such case, we have to determine if we want to scroll to the next subview or scroll back to the beginning of current subview.</p>
 <blockquote>
-  <p>leftItem = items[index] <br /> if offset.x - leftItem.x &gt; leftItem.width/2 then <br /> scroll to next subview <br /> else <br /> scroll back to beginning of leftItem</p>
+  <p>leftItem = items[index] <br /> if offset.x - leftItem.x &gt; leftItem.width * 1/3 then <br /> scroll to next subview <br /> else <br /> scroll back to beginning of leftItem</p>
 </blockquote>
-<p>In addition, you should also check if the scroll view scroll out of its content size. Which means you scroll more than you should.</p>
-<blockquote>
-  <p>if leftItem.x + scrollView.width &gt; scrollView.contentSize.width then <br /> scroll back to last subview</p>
-</blockquote>
+<p>Please note, you can set the number 1/3 in the above formular in property <code>widthToScrollNextItem</code>. And We don’t need to check whether the scroll view scroll out of its content size. because scrollview will automatically scroll back to fit its content size.</p>
 <h3 id="basic-usage">Basic Usage</h3>
 <p>This control hides most of complexity inside the control source, all you need is to setup several variable and then add all your subviews. And you are free!!!</p>
 <h5 id="constants">Constants</h5>
-<p>They are not the actual Constant but can be set anytime you want, and do remember to refresh the view to make it happens</p>
+<p>They are not the actual Constant but can be set anytime you want, and do remember to refresh the view to make it happens. Except the <code>uniformItemSize</code>, the others are stored in a structure called <code>MarginSettings</code>, there are different margin settings for different screen size, for example, 320 X 480 is the size for iPhone 4s and below, 414 X  736 is the size for 6(s) and 7 Plus. When your app is launched on these different devices that has different size, the correct margin setting is applied if it is set. Otherswise, the <code>defaultMarginSettings</code> is used to calculate margin.</p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">/// the uniform size of all added items, please set it before adding any items,</span>
 <span class="c1">/// otherwise, default size will be applied</span>
 <span class="n">uniformItemSize</span> <span class="k">default</span> <span class="n">square</span> <span class="n">with</span> <span class="mi">80</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">scrollview</span> <span class="n">height</span>
 <span class="c1">/// the margin between left border and first item,</span>
 <span class="n">leftMarginPx</span> <span class="k">default</span> <span class="mf">5.0</span>
-<span class="c1">/// the mini margin between items, it is the seed to calculate the actual margin</span>
+<span class="c1">/// the minimum margin between items, it is the seed to calculate the actual margin</span>
 <span class="c1">/// which is not less than</span>
 <span class="n">miniMarginPxBetweenItems</span> <span class="k">default</span> <span class="mf">10.0</span>
 <span class="c1">/// the minimum width appear for last item of current screen,</span>
@@ -186,9 +183,14 @@ so the constitution of the scrollview is</p>
 <p>Full codes here:</p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="n">horizontalScrollView</span> <span class="o">=</span> <span class="n">ASHorizontalScrollView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
 <span class="c1">//The default values will be used if you don&#39;t set it</span>
-<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">leftMarginPx</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">miniMarginPxBetweenItems</span> <span class="o">=</span> <span class="mi">15</span>
-<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">miniAppearPxOfLastItem</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="c1">//for iPhone 5s and lower versions in portrait</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">marginSettings_320</span> <span class="o">=</span> <span class="n">MarginSettings</span><span class="p">(</span><span class="nl">leftMargin</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">miniMarginBetweenItems</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="nl">miniAppearWidthOfLastItem</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+<span class="c1">// for iPhone 6 plus and 6s plus in portrait</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">marginSettings_414</span> <span class="o">=</span> <span class="n">MarginSettings</span><span class="p">(</span><span class="nl">leftMargin</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">miniMarginBetweenItems</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="nl">miniAppearWidthOfLastItem</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+<span class="c1">// for iPhone 6 plus and 6s plus in landscape</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">marginSettings_736</span> <span class="o">=</span> <span class="n">MarginSettings</span><span class="p">(</span><span class="nl">leftMargin</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">miniMarginBetweenItems</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">miniAppearWidthOfLastItem</span><span class="p">:</span> <span class="mi">30</span><span class="p">)</span>
+<span class="c1">//for all other screen sizes that doesn&#39;t set here, it would use defaultMarginSettings instead</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">defaultMarginSettings</span> <span class="o">=</span> <span class="n">MarginSettings</span><span class="p">(</span><span class="nl">leftMargin</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">miniMarginBetweenItems</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">miniAppearWidthOfLastItem</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">uniformItemSize</span> <span class="o">=</span> <span class="n">CGSizeMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="c1">//This must be called after changing any size or margin property of this class to get acurrate margin</span>
 <span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">setItemsMarginOnce</span><span class="p">()</span>
