@@ -163,24 +163,45 @@ so the constitution of the scrollview is</p>
 <blockquote>
   <p>leftItem = items[index] <br /> if offset.x - leftItem.x &gt; leftItem.width * 1/3 then <br /> scroll to next subview <br /> else <br /> scroll back to beginning of leftItem</p>
 </blockquote>
-<p>Please note, you can set the number 1/3 in the above formular in property <code>widthToScrollNextItem</code>. And We don’t need to check whether the scroll view scroll out of its content size. because scrollview will automatically scroll back to fit its content size.</p>
+<p>Please note, you can set the number 1/3 in the above formular in property <code>widthToScrollNextItem</code>. And We don’t need to check whether the scroll view scroll out of its content size. because scrollview will automatically scroll back to fit its content size.<br /><br /></p>
+<h5 id="updates-in-v14">Updates in v1.4</h5>
+<p>In v1.4, some new properties are introduced to let you setup different margins for different screen sizes from original 4:3 screen to 16:9 screen are all included. Such as <code>marginSettings_320</code> is for iPhone 5s and lower versions in portrait and <code>marginSettings_480</code> is for iPhone 4s and lower versions in landscape etc. All screen sizes can be setup with different margin to fit your layout accordingly. Please check following usage for more details.<br /><br /></p>
 <h3 id="basic-usage">Basic Usage</h3>
 <p>This control hides most of complexity inside the control source, all you need is to setup several variable and then add all your subviews. And you are free!!!</p>
 <h5 id="constants">Constants</h5>
 <p>They are not the actual Constant but can be set anytime you want, and do remember to refresh the view to make it happens. Except the <code>uniformItemSize</code>, the others are stored in a structure called <code>MarginSettings</code>, there are different margin settings for different screen size, for example, 320 X 480 is the size for iPhone 4s and below, 414 X  736 is the size for 6(s) and 7 Plus. When your app is launched on these different devices that has different size, the correct margin setting is applied if it is set. Otherswise, the <code>defaultMarginSettings</code> is used to calculate margin.</p>
-<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">/// the uniform size of all added items, please set it before adding any items,</span>
+<p>settings:</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">public</span> <span class="k">struct</span> <span class="n">MarginSettings</span> <span class="p">{</span>
+    <span class="c1">/// the margin between left border and first item</span>
+    <span class="n">public</span> <span class="k">var</span> <span class="nl">leftMargin</span><span class="p">:</span><span class="n">CGFloat</span> <span class="o">=</span> <span class="mf">5.0</span>
+    <span class="c1">/// the minimum margin between items, it is the seed to calculate the actual margin</span>
+    <span class="c1">/// which is not less than</span>
+    <span class="n">public</span> <span class="k">var</span> <span class="nl">miniMarginBetweenItems</span><span class="p">:</span><span class="n">CGFloat</span>  <span class="o">=</span> <span class="mf">10.0</span>
+    <span class="c1">/// the minimum width appear for last item of current screen,</span>
+    <span class="c1">/// set it 0 if you don&#39;t want any part of the last item appear on the right</span>
+    <span class="n">public</span> <span class="k">var</span> <span class="nl">miniAppearWidthOfLastItem</span><span class="p">:</span><span class="n">CGFloat</span> <span class="o">=</span> <span class="mf">20.0</span>
+    <span class="c1">/// number of items per screen, it can be integer like 3, that means total 3 items </span>
+    <span class="c1">/// occupy whole screen, 4.5 means total 4 items and one half item show on the right end. </span>
+    <span class="c1">/// Please note that if numberOfItemsPerScreen is more than screen width, </span>
+    <span class="c1">/// the maximum allowed number of items per screen would be calculated by left margin, </span>
+    <span class="c1">/// and last appeared item percentage which is determined by the fractional number of this value</span>
+    <span class="c1">/// it is default 0, if you want to change it, change the property in `defaultMarginSettings`</span>
+    <span class="n">public</span> <span class="k">var</span> <span class="nl">numberOfItemsPerScreen</span><span class="p">:</span><span class="n">Float</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">(</span><span class="kt">new</span> <span class="k">for</span> <span class="n">v1</span><span class="mf">.5</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">/// the uniform size of all added items, please set it before adding any items,</span>
 <span class="c1">/// otherwise, default size will be applied</span>
-<span class="n">uniformItemSize</span> <span class="k">default</span> <span class="n">square</span> <span class="n">with</span> <span class="mi">80</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">scrollview</span> <span class="n">height</span>
-<span class="c1">/// the margin between left border and first item,</span>
-<span class="n">leftMarginPx</span> <span class="k">default</span> <span class="mf">5.0</span>
-<span class="c1">/// the minimum margin between items, it is the seed to calculate the actual margin</span>
-<span class="c1">/// which is not less than</span>
-<span class="n">miniMarginPxBetweenItems</span> <span class="k">default</span> <span class="mf">10.0</span>
-<span class="c1">/// the minimum width appear for last item of current screen,</span>
-<span class="c1">/// set it 0 if you don&#39;t want any part of the last item appear on the right</span>
-<span class="n">miniAppearPxOfLastItem</span> <span class="k">default</span> <span class="mf">20.0</span></code></pre></div>
+<span class="n">uniformItemSize</span> <span class="k">default</span> <span class="n">square</span> <span class="n">with</span> <span class="mi">80</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">scrollview</span> <span class="n">height</span></code></pre></div>
+<h5 id="marginsettings-updates-for-v14-and-v15">MarginSettings (Updates for v1.4 and v1.5)</h5>
+<p>In v1.5, a new way to setup this control is introduced. Previously, you can only set <code>leftMargin</code>, <code>miniMarginBetweenItems</code> and <code>miniAppearWidthOfLastItem</code> to adjust how does the scroll view layout items. And in v1.5 the top three remain same usage, the new <code>numberOfItemsPerScreen</code> is used to layout items by fixed number of items you would like to show in given screen width.</p>
+<p>For example, previously, if you want to show fixed 3 items in iPhone 4s and show 5 items in iPhone 6 +, you would need to calculate the appropriate minimum margin and width in the setup, so that this control would show the items as expected. Now you would only need to set the number you preferred and this control will calculate it for you by just doing the similar setting as previously.</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">/// whether to arrange items by frame or by number of items, if set by frame, </span>
+<span class="c1">/// all margin would be calculated by frame size, otherwise, calculated by number of items per screen</span>
+<span class="c1">/// - check `numberOfItemsPerScreen` for arranged by number type</span>
+<span class="n">open</span> <span class="k">var</span> <span class="nl">arrangeType</span><span class="p">:</span><span class="n">ArrangeType</span> <span class="o">=</span> <span class="p">.</span><span class="n">byFrame</span>
+<span class="c1">/// center subviews when items do not occupy whole screen</span>
+<span class="n">public</span> <span class="k">var</span> <span class="nl">shouldCenterSubViews</span><span class="p">:</span><span class="n">Bool</span> <span class="o">=</span> <span class="nb">false</span></code></pre></div>
 <p>After setting these constants used for calculation, all you need is to add your subviews by using either <code>addItem</code> or <code>addItems</code>.</p>
-<p>Full codes here:</p>
+<p>Setup by frame:</p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="n">horizontalScrollView</span> <span class="o">=</span> <span class="n">ASHorizontalScrollView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
 <span class="c1">//The default values will be used if you don&#39;t set it</span>
 <span class="c1">//for iPhone 5s and lower versions in portrait</span>
@@ -201,26 +222,46 @@ so the constitution of the scrollview is</p>
 <span class="p">}</span>
 <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">horizontalScrollView</span><span class="p">)</span>
 <span class="c1">//refresh it if needed</span></code></pre></div>
+<p>Or Setup by number of items per screen:</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="n">horizontalScrollView</span> <span class="o">=</span> <span class="n">ASHorizontalScrollView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
+<span class="c1">//instead of using frame to determine margin, </span>
+<span class="c1">//using number of items per screen to calculate margin maybe eaiser than setting mini margin for multiple screen size</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">arrangeType</span> <span class="o">=</span> <span class="p">.</span><span class="n">byNumber</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">marginSettings_320</span> <span class="o">=</span> <span class="n">MarginSettings</span><span class="p">(</span><span class="nl">leftMargin</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">numberOfItemsPerScreen</span><span class="p">:</span> <span class="mf">4.25</span><span class="p">)</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">marginSettings_480</span> <span class="o">=</span> <span class="n">MarginSettings</span><span class="p">(</span><span class="nl">leftMargin</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">numberOfItemsPerScreen</span><span class="p">:</span> <span class="mf">5.25</span><span class="p">)</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">marginSettings_414</span> <span class="o">=</span> <span class="n">MarginSettings</span><span class="p">(</span><span class="nl">leftMargin</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">numberOfItemsPerScreen</span><span class="p">:</span> <span class="mf">4.25</span><span class="p">)</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">marginSettings_736</span> <span class="o">=</span> <span class="n">MarginSettings</span><span class="p">(</span><span class="nl">leftMargin</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">numberOfItemsPerScreen</span><span class="p">:</span> <span class="mf">7.375</span><span class="p">)</span>
+<span class="c1">//for all the other screen sizes which are not set here, margin would be calculated by frame instead </span>
+<span class="c1">//if defaultMarginSettings.numberOfItemsPerScreen is not change to other value than 0</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">defaultMarginSettings</span><span class="p">.</span><span class="n">numberOfItemsPerScreen</span> <span class="o">=</span> <span class="mf">5.3</span> 
+<span class="c1">//this means by default each screen would show 5 compelete items and 0.3 item (by width) on the right, </span>
+<span class="c1">//if smaller screens can not contain 5.3 items, x.3 items would be showed where x is the maximum allowed whole items</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">uniformItemSize</span> <span class="o">=</span> <span class="bp">CGSize</span><span class="p">(</span><span class="nl">width</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="nl">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">)</span>
+<span class="c1">//this must be called after changing any size or margin property of this class to get acurrate margin</span>
+<span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">setItemsMarginOnce</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mf">1.</span><span class="p">.</span><span class="mf">.20</span><span class="p">{</span>
+    <span class="k">let</span> <span class="n">button</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="bp">CGRect</span><span class="p">.</span><span class="n">zero</span><span class="p">)</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">gray</span>
+    <span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>Even though you have set the value for number of items per screen, this control still need the left margin you preferred to calculate the acutal margin while the other two properties <code>miniMarginBetweenItems</code> and <code>miniAppearWidthOfLastItem</code> are not required unless you don’t set the value of <code>numberOfItemsPerScreen</code> to any positive value other than 0<br /><br /></p>
 <h3 id="advanced-usage">Advanced Usage</h3>
 <p>Once you get used to it, you can customize it fully by your own. For example, instead of inserting a button, you can insert a view containing an image and a text just like the app store did. Or you can make the button with corner radius through its layer, etc.
 <br /><br />
-For example, you can center subviews when all subviews are in bound of the scrollview by adding the following function to ASHorizontalScrollview.swift, and call this function in <code>refreshSubView</code> (before <code>self.contentSize</code> is set) as well as where you want to centre the subviews.</p>
-<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">public</span> <span class="k">func</span> <span class="n">centerSubviews</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">CGFloat</span><span class="p">{</span>
-        <span class="k">if</span> <span class="k">let</span> <span class="n">itemLastX</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">items</span><span class="p">.</span><span class="n">last</span><span class="o">?</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">maxX</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="n">itemLastX</span> <span class="o">+</span> <span class="nb">self</span><span class="p">.</span><span class="n">leftMarginPx</span> <span class="o">&lt;</span> <span class="nb">self</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span> <span class="p">{</span>
-                <span class="k">let</span> <span class="n">extraGap</span> <span class="o">=</span> <span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">itemLastX</span> <span class="o">-</span> <span class="nb">self</span><span class="p">.</span><span class="n">leftMarginPx</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-                <span class="k">var</span> <span class="n">itemX</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">leftMarginPx</span> <span class="o">+</span> <span class="n">extraGap</span>
-                <span class="k">for</span> <span class="n">item</span> <span class="k">in</span> <span class="nb">self</span><span class="p">.</span><span class="n">items</span>
-                <span class="p">{</span>
-                    <span class="n">item</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="n">itemX</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
-                    <span class="n">itemX</span> <span class="o">+=</span> <span class="n">item</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span> <span class="o">+</span> <span class="nb">self</span><span class="p">.</span><span class="n">itemsMargin</span>
-                <span class="p">}</span>
-                <span class="k">return</span> <span class="n">itemX</span> <span class="o">-</span> <span class="nb">self</span><span class="p">.</span><span class="n">itemsMargin</span> <span class="o">+</span> <span class="nb">self</span><span class="p">.</span><span class="n">leftMarginPx</span> <span class="o">+</span> <span class="n">extraGap</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">return</span> <span class="n">itemLastX</span> <span class="o">-</span> <span class="nb">self</span><span class="p">.</span><span class="n">itemsMargin</span> <span class="o">+</span> <span class="nb">self</span><span class="p">.</span><span class="n">leftMarginPx</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="p">}</span></code></pre></div>
+For example, you can add gesture on item, and perform action correspondingly.</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">//in setup view</span>
+<span class="k">let</span> <span class="n">view</span> <span class="o">=</span> <span class="bp">UIView</span><span class="p">()</span>
+<span class="p">...</span>
+<span class="c1">//setup gesture</span>
+<span class="k">let</span> <span class="n">tapGesture</span> <span class="o">=</span> <span class="p">...</span>
+<span class="n">view</span><span class="p">.</span><span class="n">addGestureRecognizer</span><span class="p">(</span><span class="n">tapGesture</span><span class="p">)</span>
+<span class="p">...</span>
+<span class="c1">//gesture function</span>
+<span class="k">func</span> <span class="n">tapAction</span><span class="p">(</span><span class="nl">gesture</span><span class="p">:</span><span class="bp">UITapGestureRecognizer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="n">index</span> <span class="o">=</span> <span class="n">horizontalScrollView</span><span class="p">.</span><span class="n">items</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="nl">of</span><span class="p">:</span> <span class="n">gesture</span><span class="p">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//perform action accordingly</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <p><br /><br />
 In addition, you can change the setting of this control. Such as the deceleration rate of the scrollview by <code>self.decelerationRate = UIScrollViewDecelerationRateNormal or UIScrollViewDecelerationRateFast(default)</code>. This control is fully customizable in MIT license, feel free to use it in anyway you like :)
 <br /><br /></p>
